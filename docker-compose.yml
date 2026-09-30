@@ -26,9 +26,13 @@
 services:
   libsurvive_ros2:
     build: .
+    user: "0:0"
+    privileged: true
     ports:
       - 8765
       - 9090
+    volumes:
+      - /dev/bus/usb:/dev/bus/usb:rw
     entrypoint: /home/ros/ros2_ws/entrypoint.sh
     working_dir: /home/ros/ros2_ws
-    command: ros2 launch libsurvive_ros2 libsurvive_ros2.launch.py foxbridge:=true composable:=false
+    command: ros2 launch libsurvive_ros2 libsurvive_ros2.launch.py foxbridge:=false composable:=false
